@@ -17,9 +17,9 @@ def get_and_choose_id():
                 for regions in country['areas']:
                     print(regions['name'])
                     if regions['areas'] != []:
-                        choose = input('Поиск по всему региону   es   ,выбрать город  INTER,   nn   перейти к следующему региону,  stop  Закончить поиск по стране ')
+                        choose = input('Поиск по всему региону   es   ,выбрать город  INTER,   nn   перейти к следующему региону,  stop  Закончить поиск по стране  ')
                     else:
-                        choose = input('Добавить регион в поиск   es   ,   nn   перейти к следующему региону,  stop   выйти из страны')
+                        choose = input('Добавить регион в поиск   es   ,   nn   перейти к следующему региону,  stop   выйти из страны  ')
                     if choose == 'es':
                         id.append(regions['id'])
                         return id
