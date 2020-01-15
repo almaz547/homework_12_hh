@@ -31,7 +31,7 @@ def get_and_analitik_skills(params):
     print(f'По запросу {params["text"]} найдеро количество вакансий:  {found}')
 
     while x <= found and params['page'] <= 99:
-        print(f'Страница № {params["page"]}')     #  Тест принт
+        # print(f'Страница № {params["page"]}')     #  Тест принт
         result = requests.get(url, params=params).json()
         items = result['items']
         for item in items:
