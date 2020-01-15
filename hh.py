@@ -106,7 +106,7 @@ def get_and_analitik_skills(params):
             json.dump({'Всего требований':  qiantity_skill}, z)
         with open('list_stils.json', 'w') as s:
             json.dump({'Список требований': list_skills}, s)
-        with open('salary_analytics', 'w') as f:
+        with open('salary_analytics.json', 'w') as f:
             json.dump({'аналитика зарплат': list_salary}, f)
 
 
