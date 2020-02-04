@@ -7,10 +7,10 @@ def get_and_choose_id():
     id = []
     for country in result:
         print(country['name'])
-        choose = input(f'Просмотр id по стране <  {country["name"]}  > введите   es   ,если пропустить страну:   INTER  ')
-        if choose == 'es':
-            choose = input('Поиск по всей стране целиком введите   es   ,выбрать регион:   INTER ')
-            if choose == 'es':
+        choose_country = input(f'Просмотр id по стране <  {country["name"]}  > введите   yes   ,если пропустить страну:   INTER  ')
+        if choose_country == 'yes':
+            how_to_search = input('Поиск по всей стране целиком введите   yes   ,выбрать регион:   INTER ')
+            if how_to_search == 'yes':
                 id.append(country['id'])
                 return id
             else:

@@ -25,7 +25,7 @@ def get_and_analitik_skills(params):
     count_salary_min_gross_true = 0  # Количество показателей минимальной зарплаты без  вычетов налогов
     salary_max_gross_true = 0  # Максимальная зарплата без вычетов налогов
     count_salary_max_gross_true = 0  # Количество показателей максимальной зарплаты без вычетов налогов
-    x = 1
+    x = 0
     result = requests.get(url, params=params).json()
     found = result['found']
     print(f'По запросу {params["text"]} найдеро количество вакансий:  {found}')
@@ -35,6 +35,7 @@ def get_and_analitik_skills(params):
         result = requests.get(url, params=params).json()
         items = result['items']
         for item in items:
+            x += 1
             url_vacansy = item['url']
             result_vacansy = requests.get(url_vacansy, params=params).json()
             salary = result_vacansy['salary']         #  Словарь зарплаты у данной вакансии
@@ -63,7 +64,7 @@ def get_and_analitik_skills(params):
                 else:
                     dict_skills[sk] = 1
                     qiantity_skill += 1
-            x += 1
+
         params['page'] += 1
 
     average_min_salary_gross_false = calculating_average(salary_min_gross_false, count_salary_min_gross_false)  # Средняя минимальная зарплата с вычетом налогов среди вакансий с указанной зп
@@ -98,8 +99,8 @@ def get_and_analitik_skills(params):
     for element in list_salary:
         print(element)
 
-    choose = input('Сохранить файл ?, если да:   es   , если нет:  ENTER  ')
-    if choose == 'es':
+    choose = input('Сохранить файл ?, если да:   yes   , если нет:  ENTER  ')
+    if choose == 'yes':
         with open('search_option.json', 'w') as o:
             json.dump({'Параметры поиска': params}, o)
         with open('number_skils.json', 'w') as z:

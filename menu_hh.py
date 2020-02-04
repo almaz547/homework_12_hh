@@ -12,19 +12,19 @@ print('Выберите вариант ввода:  ')
 print('1   Выбрать регион из каталога в режиме да/нет')
 print('2   Ввести id регионa (одного) вручную')
 
-choise = input('Введите пункт меня "Регион":  ')
+how_to_choose = input('Как выбирать ?  1   или   2  :   ')
 
-if choise == '1':
+if how_to_choose == '1':
     id = get_and_choose_id()
     str_id = ''.join(str(i) if i is id[0] and str_id == '' else f', {i}' for i in id)
-elif choise == '2':
+elif how_to_choose == '2':
     str_id = input('Введите id региона/города для поиска:  ')
 else:
     print('Некорректный выбор регирна !')
 params['area'] = str_id
 
-choise = input('Выбрать остальные параметры в режиме  да/нет:  es   ,если нет нажмите  ENTER  ')
-if choise == 'es':
+choise = input('Выбрать остальные параметры в режиме  да/нет:  yes   ,если нет нажмите  ENTER  ')
+if choise == 'yes':
     params_search = question_vacancy_search_fields()
     params.update(params_search)
 get_and_analitik_skills(params)
