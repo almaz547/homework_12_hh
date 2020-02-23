@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Поиск главная страница</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='/https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='/https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="/static/css/clean-blog.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <div class="navbar-brand"></div>
+<!--      <a class="navbar-brand" href="index.html">Start Bootstrap</a>-->
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Главная страница</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/main_form/">Параметры поиска</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/result/">Результаты</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/contact/">Контакты</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!--class="subheading"-->
+<!--background-image: url('img/post-bg.jpg')-->
+<!--  class="masthead"-->
+  <header class="masthead" style="background-image: url('img/post-bg.jpg')">
+    <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+      <h1>Форма для поиска</h1>
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-heading">
+                    <form action="/main_form/" method="post">
+                        {% if not name %}
+                            <h2 class="subheading">Введите название вакансии, или несколько через запятую</h2>
+                            <input type="text" name="name_vacancy" placeholder="название вакансии" class="form-control" aria-describedby="basic-addon">
+                        {% endif %}
+            <br>
+            <br>
+            <h4>Область поиска</h4>
+                    {% if not regions and not citys and not id_coun %}
+                        <select name="choose_country" class="form-control"  aria-describedby="basic-addon">
+                          {% for name_country in countrys %}
+                              <option value='{{name_country}}'>{{name_country}}</option>
+                          {% endfor %}
+                        </select>
+                    {% endif %}
+            <br>
+            <br>
+            {% if not citys and not choose_city and not id %}
+                {% if regions %}
+                        <select name="choose_region" class="form-control"  aria-describedby="basic-addon">
+                                <option value="all_country">По всей стране</option>
+                            {% for region in regions %}
+                                <option value='{{region}}'>{{region}}</option>
+                            {% endfor %}
+                        </select>
+                {% endif %}
+            <br>
+            <br>
+            {% endif %}
+                {% if citys and not choose_city and not id %}
+                    <select name="choose_city" class="form-control"  aria-describedby="basic-addon">
+                            <option value="all_region">По всему региону</option>
+                        {% for name_city in citys %}
+                            <option value='{{name_city}}'>{{name_city}}</option>
+                        {% endfor %}
+                    </select>
+                {% endif %}
+                {% if not regions and not citys and not id %}
+                    <h4>Выбор параметров</h4>
+                        <br>
+                        {% for name_par, params in dict_name.items() %}
+                            <h5>{{name_par}}</h5>
+
+                               <select name="{{name_par}}" class="form-control" aria-describedby="basic-addon">
+                                        <option value="all_{{name_par}}">По всем параметрам</option>
+                                   {% for param in params %}
+                                        <option value="{{param}}">{{param}}</option>
+                                   {% endfor %}
+                                </select>
+                        {% endfor %}
+                {% endif %}
+                    <br>
+                    <br>
+
+                            {% if name and id %}
+                                <form>
+                                    <select name="result" class="form-control" aria-describedby="basic-addon">
+                                        <option value="get_result">Подсчет данных</option>
+                                        <option value="clear search">Очистить поиск</option>
+                                    </select>
+                                        <button class="btn btn-secondary" type="submit">Отправить</button>
+                                </form>
+                            {% else %}
+                              <button class="btn btn-secondary" type="submit">Отправить</button>
+                            {% endif %}
+                    </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </header>
+
+</body>
+
+</html>
