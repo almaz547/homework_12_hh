@@ -6,6 +6,8 @@ from flask_get_id import get_id_country
 import json
 from flask_vacancy_search_params import get_id_params
 from flask_hh import get_and_analitik_skills_flask
+from work_with_database_17 import *
+
 
 
 def get_clear_search():
@@ -40,6 +42,8 @@ def get_clear_search():
     with open('general_indicators.json', 'w', encoding='utf-8') as f:
         json.dump('', f)
     with open('expectation_result.txt', 'w', encoding='utf-8') as f:
+        f.write('')
+    with open('data_output.txt', 'w', encoding='utf-8') as f:
         f.write('')
     return
 
@@ -174,16 +178,19 @@ def get_result():
                 params.update(params_vacancy)
 
                 list_skills, list_salary, general_indicators = get_and_analitik_skills_flask(params)
-                general_indicators.update({'name_id': name_id})
+                general_indicators.update({'name_region': name_id})
 
-                with open('list_skills.json', 'w', encoding='utf-8') as f:
-                    json.dump(list_skills, f)
-                with open('list_salary.json', 'w', encoding='utf-8') as f:
-                    json.dump(list_salary, f)
-                with open('general_indicators.json', 'w', encoding='utf-8') as f:
-                    json.dump(general_indicators, f)
-            else:
-                pass
+                write_name_region_in_sqlite()
+                write_name_vacancy_in_sqlite()
+                write_statistics_key_skills_hh_in_sqlite(list_skills)
+                write_statistics_salary_hh_in_sqlite(list_salary)
+                write_general_indicators_in_sqlite(general_indicators)
+
+                with open('data_output.txt', 'w', encoding='utf-8') as f:
+                    f.write('data_output')
+
+
+
 
 
 

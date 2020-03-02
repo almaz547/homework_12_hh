@@ -72,14 +72,14 @@
                         <tr>
                             <th>Вакансии</th>
                             <th>Область поиска</th>
-                            <th>Найдено вакансий</th>
+                            <th>Всего вакансий</th>
                             <th>Всего требований</th>
                         </tr>
                         <tr>
-                            <td>{{gen_ind.vacancy}}</td>
-                            <td>{{gen_ind.name_id}}</td>
-                            <td>{{gen_ind.vacancy_numbrs}}</td>
-                            <td>{{gen_ind.numbers_skils}}</td>
+                            <td>{{gen_ind.name_vacancy}}</td>
+                            <td>{{gen_ind.name_region}}</td>
+                            <td>{{gen_ind.numbers_vacancy}}</td>
+                            <td>{{gen_ind.all_numbers_key_skills}}</td>
                         </tr>
                     </table>
         {% endif %}
@@ -95,7 +95,6 @@
                             <th>Требование</th>
                             <th>Количество появлений</th>
                             <th>В % вакансий</th>
-                            <th>Всего вакансий</th>
                         </tr>
                             {% for str in skills %}
                                 <tr>
@@ -109,15 +108,17 @@
                 <br>
                 <br>
                 <br>
-            <h3>Статистика зарплат</h3>
+
                 <br>
                 {% if salary %}
+                    <h3>Статистика зарплат</h3>
+                        <br>
+                        <br>
                     <table>
                         <tr>
                             <th>Тип показателя</th>
                             <th>Размер ЗП</th>
-                            <th>Количество показателей</th>
-                            <th>Из кол-ва вакансий</th>
+                            <th>По количеству вакансий</th>
                         </tr>
 
                     {% for str in salary %}

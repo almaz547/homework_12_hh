@@ -5,6 +5,8 @@ from flask_vacancy_search_params import get_dict_name_relevant_params
 from flask_get_id import get_list_name_contry
 
 
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -176,13 +178,21 @@ def contact():
 
 @app.route("/result/")
 def result():
-    with open('list_skills.json', 'r', encoding='utf-8') as f:
-        list_skills = json.load(f)
-    with open('list_salary.json', 'r', encoding='utf-8') as f:
-        list_salary = json.load(f)
-    with open('general_indicators.json', 'r', encoding='utf-8') as f:
-        general_indicators = json.load(f)
-    return render_template('result_new.html', skills=list_skills, salary=list_salary, gen_ind=general_indicators)
+    try:
+        with open('data_output.txt', 'r', encoding='utf-8') as f:
+            data_output = f.read()
+    except FileNotFoundError:
+        data_output = ''
+    if data_output:
+        list_skills = get_statistics_key_skills_hh_of_sqlite()
+        list_salary = get_statistics_salary_hh_of_sqlite()
+        dict_general_indicators = get_general_indicators_of_sqlite()
+        get_clear_search()
+    else:
+        list_skills = []
+        list_salary = []
+        dict_general_indicators = {}
+    return render_template('result_new.html', skills=list_skills, salary=list_salary, gen_ind=dict_general_indicators)
 
 if __name__ == "__main__":
     app.run(debug=True)

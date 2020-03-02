@@ -80,27 +80,27 @@ def get_and_analitik_skills_flask(params):
     result = sorted(dict_skills.items(), key=lambda x:x[1], reverse=True)
     print(f'Всего требований:  {qiantity_skill}')
     for element in result:
-        element_ = [element[0], f'в {element[1]} вакансиях', f'в {round(element[1] / x * 100, 2)} % вакансий', f'из {x}']
+        element_ = [element[0], element[1], round(element[1] / x * 100, 2)]
         list_skills.append(element_)
 
     list_salary = []
-    salary_1 = ['Средн зп с выч налг:', average_salary_gross_false, f'по {(count_salary_min_gross_false + count_salary_max_gross_false) / 2} вакансиям', f'из {x}']
+    salary_1 = ['Средн зп с выч налг:', average_salary_gross_false, (count_salary_min_gross_false + count_salary_max_gross_false) / 2]
     list_salary.append(salary_1)
-    salary_2 = ['Сред зп без выч налг:', average_salary_gross_true, f'по {(count_salary_min_gross_true + count_salary_max_gross_true) / 2} вакансиям', f'из {x}']
+    salary_2 = ['Сред зп без выч налг:', average_salary_gross_true, (count_salary_min_gross_true + count_salary_max_gross_true) / 2]
     list_salary.append(salary_2)
-    salary_3 = ['Сред мин зп с выч налг:', average_min_salary_gross_false, f'по {count_salary_min_gross_false} вакансиям', f'из {x}']
+    salary_3 = ['Сред мин зп с выч налг:', average_min_salary_gross_false, count_salary_min_gross_false]
     list_salary.append(salary_3)
-    salary_4 = ['Сред макс зп с выч налг:', average_max_salary_gross_false, f'по {count_salary_max_gross_false} вакансиям', f'из {x}']
+    salary_4 = ['Сред макс зп с выч налг:', average_max_salary_gross_false, count_salary_max_gross_false]
     list_salary.append(salary_4)
-    salary_5 = ['Сред мин зп без выч налг:', average_min_salary_gross_true, f'по {count_salary_min_gross_true} вакансиям', f'из {x}']
+    salary_5 = ['Сред мин зп без выч налг:', average_min_salary_gross_true, count_salary_min_gross_true]
     list_salary.append(salary_5)
-    salary_6 = ['Сред макс зп без выч налг:', average_max_salary_gross_true, f'по {count_salary_max_gross_true} вакансиям', f'из {x}']
+    salary_6 = ['Сред макс зп без выч налг:', average_max_salary_gross_true, count_salary_max_gross_true]
     list_salary.append(salary_6)
 
     general_indicators = {
-        'vacancy': params["text"],
-        'vacancy_numbrs': found,
-        'numbers_skils': qiantity_skill
+        'name_vacancy': params["text"],
+        'numbers_vacancy': found,
+        'all_numbers_key_skills': qiantity_skill
 
     }
 
