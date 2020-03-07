@@ -84,17 +84,17 @@ def get_and_analitik_skills_flask(params):
         list_skills.append(element_)
 
     list_salary = []
-    salary_1 = ['Средн зп с выч налг:', average_salary_gross_false, (count_salary_min_gross_false + count_salary_max_gross_false) / 2]
+    salary_1 = ['Средн зп с выч налг', average_salary_gross_false, (count_salary_min_gross_false + count_salary_max_gross_false) / 2]
     list_salary.append(salary_1)
-    salary_2 = ['Сред зп без выч налг:', average_salary_gross_true, (count_salary_min_gross_true + count_salary_max_gross_true) / 2]
+    salary_2 = ['Сред зп без выч налг', average_salary_gross_true, (count_salary_min_gross_true + count_salary_max_gross_true) / 2]
     list_salary.append(salary_2)
-    salary_3 = ['Сред мин зп с выч налг:', average_min_salary_gross_false, count_salary_min_gross_false]
+    salary_3 = ['Сред мин зп с выч налг', average_min_salary_gross_false, count_salary_min_gross_false]
     list_salary.append(salary_3)
-    salary_4 = ['Сред макс зп с выч налг:', average_max_salary_gross_false, count_salary_max_gross_false]
+    salary_4 = ['Сред макс зп с выч налг', average_max_salary_gross_false, count_salary_max_gross_false]
     list_salary.append(salary_4)
-    salary_5 = ['Сред мин зп без выч налг:', average_min_salary_gross_true, count_salary_min_gross_true]
+    salary_5 = ['Сред мин зп без выч налг', average_min_salary_gross_true, count_salary_min_gross_true]
     list_salary.append(salary_5)
-    salary_6 = ['Сред макс зп без выч налг:', average_max_salary_gross_true, count_salary_max_gross_true]
+    salary_6 = ['Сред макс зп без выч налг', average_max_salary_gross_true, count_salary_max_gross_true]
     list_salary.append(salary_6)
 
     general_indicators = {

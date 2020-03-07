@@ -3,6 +3,9 @@ from flask_menu_hh import *
 import json
 from flask_vacancy_search_params import get_dict_name_relevant_params
 from flask_get_id import get_list_name_contry
+from create_object_in_table_dz_18 import get_general_indicators_hh_of_database
+from create_object_in_table_dz_18 import get_statistics_key_skills_hh_of_database
+from create_object_in_table_dz_18 import get_statistics_salary_hh_of_database
 
 
 
@@ -184,10 +187,13 @@ def result():
     except FileNotFoundError:
         data_output = ''
     if data_output:
-        list_skills = get_statistics_key_skills_hh_of_sqlite()
-        list_salary = get_statistics_salary_hh_of_sqlite()
-        dict_general_indicators = get_general_indicators_of_sqlite()
-        get_clear_search()
+        # list_skills = get_statistics_key_skills_hh_of_sqlite()
+        # list_salary = get_statistics_salary_hh_of_sqlite()
+        # dict_general_indicators = get_general_indicators_of_sqlite()
+        list_skills = get_statistics_key_skills_hh_of_database()
+        list_salary = get_statistics_salary_hh_of_database()
+        dict_general_indicators = get_general_indicators_hh_of_database()
+        # get_clear_search()
     else:
         list_skills = []
         list_salary = []

@@ -6,12 +6,20 @@ from flask_get_id import get_id_country
 import json
 from flask_vacancy_search_params import get_id_params
 from flask_hh import get_and_analitik_skills_flask
-from work_with_database_17 import *
+# from work_with_database_17 import *
+from create_object_in_table_dz_18 import write_general_indicators_in_database
+from create_object_in_table_dz_18 import write_statistics_key_skills_hh_in_database
+from create_object_in_table_dz_18 import write_statistics_salary_hh_in_database
+from create_object_in_table_dz_18 import write_region_in_database, write_vacancy_in_database
 
 
 
 def get_clear_search():
     with open('name_vacancy.txt', 'w', encoding='utf-8') as f:
+        f.write('')
+    with open('name_id.txt', 'w', encoding='utf-8') as f:
+        f.write('')
+    with open('name_region.txt', 'w', encoding='utf-8') as f:
         f.write('')
     with open('name_country.txt', 'w', encoding='utf-8') as f:
         f.write('')
@@ -180,11 +188,17 @@ def get_result():
                 list_skills, list_salary, general_indicators = get_and_analitik_skills_flask(params)
                 general_indicators.update({'name_region': name_id})
 
-                write_name_region_in_sqlite()
-                write_name_vacancy_in_sqlite()
-                write_statistics_key_skills_hh_in_sqlite(list_skills)
-                write_statistics_salary_hh_in_sqlite(list_salary)
-                write_general_indicators_in_sqlite(general_indicators)
+                # write_name_region_in_sqlite()
+                # write_name_vacancy_in_sqlite()
+                # write_statistics_key_skills_hh_in_sqlite(list_skills)
+                # write_statistics_salary_hh_in_sqlite(list_salary)
+                # write_general_indicators_in_sqlite(general_indicators)
+
+                write_region_in_database()
+                write_vacancy_in_database()
+                write_statistics_key_skills_hh_in_database(list_skills)
+                write_statistics_salary_hh_in_database(list_salary)
+                write_general_indicators_in_database(general_indicators)
 
                 with open('data_output.txt', 'w', encoding='utf-8') as f:
                     f.write('data_output')
