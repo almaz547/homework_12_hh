@@ -13,16 +13,21 @@ def get_name_vacancy():
     if name_vacancy:
         return name_vacancy
 
+def get_name_region():
+    try:
+        with open('name_id.txt', 'r', encoding='utf-8') as f:
+            name_region = f.read()
+    except FileNotFoundError:
+        name_region = ''
+    return name_region
 
 def write_name_region_in_sqlite():
-    with open('name_id.txt', 'r', encoding='utf-8') as f:
-        name_region = f.read()
+    name_region = get_name_region()
     cursor.execute("insert into region (name) values (?)", (name_region,))
     return
 
 def get_id_region_of_sqlite():
-    with open('name_id.txt', 'r', encoding='utf-8') as f:
-        name_region = f.read()
+    name_region = get_name_region()
     cursor.execute("SELECT id from region where region.name=?", (name_region,))
     region_id = cursor.fetchall()
     region_id = region_id[0][0]
